@@ -1,0 +1,10 @@
+
+function deactivateUser($userid)
+{ 
+global $mysqli,$db_table_prefix;
+$stmt = $mysqli->prepare("UPDATE ".$db_table_prefix." USER SET ACTIVE='0' WHERE userid=?");
+$stmt->bind_param("s",$userid);
+$result = $stmt-> execute(); 
+$stmt->close(); 
+return $result;
+}
