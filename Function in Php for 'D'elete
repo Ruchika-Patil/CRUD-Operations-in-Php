@@ -1,0 +1,10 @@
+
+function deleteUser($userid) 
+{ 
+global $mysqli,$db_table_prefix;
+$stmt = $mysqli->prepare("DELETE FROM ".$db_table_prefix." USER WHERE userid=?"); 
+$stmt->bind_param("s",$userid); 
+$result = $stmt-> execute();
+$stmt->close();
+return $result; 
+}
