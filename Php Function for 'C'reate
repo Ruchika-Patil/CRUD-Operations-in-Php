@@ -1,0 +1,14 @@
+
+function userExists($email){
+global $mysqli,$db_table_prefix;
+$stmt = $mysqli->prepare("SELECT COUNT(*) FROM ". $db_table_prefix . "USER WHERE EmailAddress=?");
+$stmt->bind_param("s",$email); 
+$stmt->execute();
+$stmt->bind_result($count);
+while($stmt->fetch())
+{
+$userCount = $count;
+} 
+$stmt->close(); 
+return $userCount > 0 ? true : false;
+}
