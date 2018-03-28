@@ -1,0 +1,13 @@
+function login($email, $password) 
+{
+ global $mysqli,$db_table_prefix;
+ $stmt = $mysqli->prepare("SELECT COUNT(*) FROM ". $db_table_prefix . "USER WHERE EmailAddress=? AND zip=? ");
+ $stmt->bind_param("ss",$email, $password); 
+$stmt->execute(); 
+$stmt->bind_result($count); 
+while($stmt->fetch()) 
+{
+ $userCount = $count; 
+}
+ $stmt->close(); return $userCount; 
+}
